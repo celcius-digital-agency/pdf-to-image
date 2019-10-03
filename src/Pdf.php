@@ -169,10 +169,10 @@ class Pdf
      *
      * @return bool
      */
-    public function saveImage($pathToImage)
+    public function saveImage($pathToImage, $filename)
     {
         if (is_dir($pathToImage)) {
-            $pathToImage = rtrim($pathToImage, '\/').DIRECTORY_SEPARATOR.$this->page.'.'.$this->outputFormat;
+            $pathToImage = rtrim($pathToImage, '\/').DIRECTORY_SEPARATOR.$filename.'.'.$this->outputFormat;
         }
 
         $imageData = $this->getImageData($pathToImage);
