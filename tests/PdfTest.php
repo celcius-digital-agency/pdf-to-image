@@ -3,11 +3,11 @@
 namespace Spatie\PdfToImage\Test;
 
 use Imagick;
-use Spatie\PdfToImage\Pdf;
 use PHPUnit\Framework\TestCase;
 use Spatie\PdfToImage\Exceptions\InvalidFormat;
-use Spatie\PdfToImage\Exceptions\PdfDoesNotExist;
 use Spatie\PdfToImage\Exceptions\PageDoesNotExist;
+use Spatie\PdfToImage\Exceptions\PdfDoesNotExist;
+use Spatie\PdfToImage\Pdf;
 
 class PdfTest extends TestCase
 {
@@ -20,7 +20,7 @@ class PdfTest extends TestCase
     /** @var string */
     protected $remoteFileUrl;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -113,17 +113,9 @@ class PdfTest extends TestCase
     }
 
     /** @test */
-    public function it_will_convert_a_remote_file()
-    {
-        $imagick = (new Pdf($this->remoteFileUrl))->getImageData('remote.jpg');
-
-        $this->assertInstanceOf('Imagick', $imagick);
-    }
-
-    /** @test */
     public function it_will_set_compression_quality()
     {
-        $imagick = (new Pdf($this->remoteFileUrl))
+        $imagick = (new Pdf($this->testFile))
             ->setCompressionQuality(99)
             ->getImageData('test.jpg');
 
